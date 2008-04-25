@@ -1,6 +1,6 @@
 Name:           jruby
 Version:        1.1.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 
 Group:          Development/Languages
@@ -24,7 +24,7 @@ BuildRequires:  ant >= 1.6
 BuildRequires:  ant-junit >= 1.6
 BuildRequires:  bsf
 BuildRequires:  bytelist
-BuildRequires:  java-devel >= 1.5
+BuildRequires:  java-devel >= 1:1.6
 BuildRequires:  jline
 BuildRequires:  jna
 BuildRequires:  jna-posix
@@ -38,7 +38,7 @@ BuildRequires:  objectweb-asm
 Requires:       bcel
 Requires:       bsf
 Requires:       bytelist
-Requires:       java >= 1.5
+Requires:       java >= 1:1.6
 Requires:       jna
 Requires:       jna-posix
 Requires:       jpackage-utils >= 1.5
@@ -158,6 +158,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Apr 24 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.1-5
+- BR and Requires openjdk.
+
 * Tue Apr 22 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.1-4
 - Add check section.
 - Removed patches 0 and 4 because they got incorporated in upstream.
