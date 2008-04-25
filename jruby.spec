@@ -1,6 +1,6 @@
 Name:           jruby
 Version:        1.1.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 
 Group:          Development/Languages
@@ -19,6 +19,7 @@ Patch3:         jruby-dont-include-dependencies-in-jar.patch
 Patch5:         jruby-add-classpath-for-tests.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
+ExcludeArch:    ppc ppc64
 
 BuildRequires:  ant >= 1.6
 BuildRequires:  ant-junit >= 1.6
@@ -158,6 +159,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Apr 24 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.1-6
+- ExcludeArch ppc{,64}.
+
 * Thu Apr 24 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.1-5
 - BR and Requires openjdk.
 
