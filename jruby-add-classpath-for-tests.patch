@@ -1,0 +1,14 @@
+--- build.xml.orig	2008-04-23 17:07:21.000000000 -0700
++++ build.xml	2008-04-23 17:12:21.000000000 -0700
+@@ -484,10 +484,11 @@
+       <echo message="compile=@{compile.mode}, jit.threshold=@{jit.threshold}, jit.max=@{jit.max}, objectspace=@{objectspace.enabled} threadpool=@{thread.pooling} reflection=@{reflection} version=@{jruby.version}"/>
+       <taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask" classpath="${build.lib.dir}/junit.jar"/>
+ 
+       <junit jvm="${jruby.test.jvm}" fork="yes" forkMode="once" haltonfailure="true" dir="${basedir}" maxmemory="${jruby.test.memory}" showoutput="true" timeout="1200000">
+ 	<classpath refid="test.class.path"/>
++	<classpath refid="build.classpath"/>
+       
+ 	<sysproperty key="java.awt.headless" value="true"/>
+ 	<sysproperty key="jruby.home" value="${basedir}"/>
+ 	<sysproperty key="jruby.lib" value="${lib.dir}"/>
+ 	<sysproperty key="jruby.compile.mode" value="@{compile.mode}"/>

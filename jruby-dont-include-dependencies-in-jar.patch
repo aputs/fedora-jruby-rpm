@@ -1,0 +1,45 @@
+--- build.xml.orig	2008-04-22 17:22:58.000000000 -0700
++++ build.xml	2008-04-22 17:27:32.000000000 -0700
+@@ -168,34 +168,18 @@
+        <patternset refid="java.src.pattern"/>
+     </javac>
+   </target>
+ 
+   <target name="jar-jruby" unless="jar-up-to-date">
+-      <antcall target="generate-method-classes" inheritall="true"/>
+-      <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask" classpath="${build.lib.dir}/jarjar-1.0rc7.jar"/>
+-      <jarjar destfile="${lib.dir}/jruby.jar">
+-        <fileset dir="${jruby.classes.dir}">
+-          <exclude name="org/jruby/util/ant/**/*.class"/>
+-        </fileset>
+-        <zipfileset src="${build.lib.dir}/asm-3.0.jar"/>
+-        <zipfileset src="${build.lib.dir}/asm-commons-3.0.jar"/>
+-        <zipfileset src="${build.lib.dir}/asm-util-3.0.jar"/>
+-        <zipfileset src="${build.lib.dir}/asm-analysis-3.0.jar"/>
+-        <zipfileset src="${build.lib.dir}/asm-tree-3.0.jar"/>
+-        <zipfileset src="${build.lib.dir}/bytelist-0.1.jar"/>
+-        <zipfileset src="${build.lib.dir}/jvyamlb-0.1.jar"/>
+-        <zipfileset src="${build.lib.dir}/jline-0.9.93.jar"/>
+-        <zipfileset src="${build.lib.dir}/joni.jar"/>
+-        <zipfileset src="${build.lib.dir}/jna-posix.jar"/>
+-        <zipfileset src="${build.lib.dir}/jna.jar"/>
+-        <zipfileset src="${build.lib.dir}/joda-time-1.5.1.jar"/>
+-        <rule pattern="org.objectweb.asm.**" result="jruby.objectweb.asm.@1"/>
+-        <manifest>
+-          <attribute name="Built-By" value="${user.name}"/>
+-          <attribute name="Main-Class" value="org.jruby.Main"/>
+-        </manifest>
+-      </jarjar>
++    <antcall target="generate-method-classes" inheritall="true"/>
++    <jar destfile="${lib.dir}/jruby.jar">
++      <fileset dir="${jruby.classes.dir}" />
++      <manifest>
++        <attribute name="Built-By" value="${user.name}"/>
++        <attribute name="Main-Class" value="org.jruby.Main"/>
++      </manifest>
++    </jar>
+   </target>
+ 
+   <path id="lib.classpath">
+     <pathelement location="${build.lib.dir}/retroweaver-rt-2.0.5.jar"/>
+     <pathelement location="${build.lib.dir}/backport-util-concurrent.jar"/>

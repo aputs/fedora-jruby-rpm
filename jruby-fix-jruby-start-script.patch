@@ -1,0 +1,17 @@
+--- bin/jruby.orig	2008-04-05 17:59:31.000000000 -0700
++++ bin/jruby	2008-04-05 19:01:29.000000000 -0700
+@@ -9,10 +9,14 @@
+ #
+ #   JAVA_HOME     Must point at your Java Development Kit installation.
+ #
+ # -----------------------------------------------------------------------------
+ 
++CLASSPATH=$(build-classpath objectweb-asm/asm objectweb-asm/asm-util \
++            objectweb-asm/asm-analysis objectweb-asm/asm-tree joni \
++            joda-time jline bytelist jna-posix jvyamlb)
++
+ cygwin=false
+ 
+ # ----- Identify OS we are running under --------------------------------------
+ case "`uname`" in
+ CYGWIN*) cygwin=true
