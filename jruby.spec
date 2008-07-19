@@ -1,12 +1,12 @@
 Name:           jruby
-Version:        1.1.1
-Release:        7%{?dist}
+Version:        1.1.3
+Release:        1%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
 URL:            http://jruby.codehaus.org/
-Source0:        http://dist.codehaus.org/jruby/jruby-src-1.1.1.tar.gz
+Source0:        http://dist.codehaus.org/jruby/jruby-src-1.1.3.tar.gz
 # This patch is Fedora specific; we set up classpath using build-classpath.
 Patch1:         jruby-fix-jruby-start-script.patch
 # Temporary until upstream realizes they don't support 1.4 and scraps
@@ -15,8 +15,6 @@ Patch2:         jruby-remove-retroweaver-task.patch
 # Disagreements with upstream. They want to bundle binary dependencies
 # into jruby's jar; we don't.
 Patch3:         jruby-dont-include-dependencies-in-jar.patch
-# Assuming we want to run the tests.
-Patch5:         jruby-add-classpath-for-tests.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
@@ -29,10 +27,10 @@ BuildRequires:  jline
 BuildRequires:  jna
 BuildRequires:  jna-posix
 BuildRequires:  joda-time
-BuildRequires:  joni
+BuildRequires:  joni >= 1.0.3
 BuildRequires:  jpackage-utils >= 1.5
 BuildRequires:  junit
-BuildRequires:  jvyamlb
+BuildRequires:  jvyamlb >= 0.2.2
 BuildRequires:  objectweb-asm
 
 Requires:       bcel
@@ -42,7 +40,7 @@ Requires:       java >= 1:1.6
 Requires:       jline
 Requires:       jna
 Requires:       jna-posix
-Requires:       joni
+Requires:       joni >= 1.0.3
 Requires:       jpackage-utils >= 1.5
 Requires:       jvyamlb
 Requires:       objectweb-asm
@@ -73,9 +71,6 @@ Javadoc for %{name}.
 %patch1 -p0
 %patch2 -p0
 %patch3 -p0
-%patch5 -p0
-
-cp build.xml build.xml.orig
 
 # delete binary .jars.
 rm -f build_lib/*.jar
@@ -143,10 +138,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %doc COPYING COPYING.CPL COPYING.GPL COPYING.LGPL
-%doc docs/BeanScriptingFramework docs/CodeConventions.txt
-%doc docs/Glossary.txt docs/Javasupport-highlevel.txt
-%doc docs/Javasupport-lowlevel.txt docs/Javasupport-overview.txt
-%doc docs/README.test docs/release-checklist.txt
+%doc docs/CodeConventions.txt docs/README.test
 
 %attr(0755,root,root) %{_bindir}/%{name}
 %attr(0755,root,root) %{_bindir}/jirb
@@ -160,6 +152,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sat Jul 19 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.3-1
+- Bump to 1.1.3.
+
 * Wed May 21 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.1-7
 - Require joni and jline.
 
