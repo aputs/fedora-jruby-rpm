@@ -1,6 +1,6 @@
 Name:           jruby
 Version:        1.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 
 Group:          Development/Languages
@@ -152,6 +152,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Jul 29 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.3-2
+- Update jruby-fix-jruby-start-script.patch to work with faster
+  class-loading mechanism introduced in JRuby 1.1.2.
+
 * Sat Jul 19 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.3-1
 - Bump to 1.1.3.
 

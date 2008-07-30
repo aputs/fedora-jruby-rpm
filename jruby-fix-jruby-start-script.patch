@@ -1,17 +1,19 @@
---- bin/jruby.orig	2008-04-05 17:59:31.000000000 -0700
-+++ bin/jruby	2008-04-05 19:01:29.000000000 -0700
-@@ -9,10 +9,14 @@
- #
- #   JAVA_HOME     Must point at your Java Development Kit installation.
- #
- # -----------------------------------------------------------------------------
+--- bin/jruby.orig	2008-07-18 22:12:22.000000000 -0700
++++ bin/jruby	2008-07-29 19:55:28.000000000 -0700
+@@ -67,10 +67,16 @@
+         else
+         JRUBY_CP="$j"
+     fi
+ done
  
-+CLASSPATH=$(build-classpath objectweb-asm/asm objectweb-asm/asm-util \
-+            objectweb-asm/asm-analysis objectweb-asm/asm-tree joni \
-+            joda-time jline bytelist jna-posix jvyamlb)
++j=$(build-classpath objectweb-asm/asm objectweb-asm/asm-util \
++  objectweb-asm/asm-analysis objectweb-asm/asm-tree joni joda-time jline \
++  bytelist jna-posix jvyamlb)
 +
- cygwin=false
++JRUBY_CP="$JRUBY_CP$CP_DELIMETER$j"
++
+ if $cygwin; then
+     JRUBY_CP=`cygpath -p -w "$JRUBY_CP"`
+ fi
  
- # ----- Identify OS we are running under --------------------------------------
- case "`uname`" in
- CYGWIN*) cygwin=true
+ # ----- Set Up The System Classpath -------------------------------------------
