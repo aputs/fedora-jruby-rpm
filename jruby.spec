@@ -32,6 +32,7 @@ BuildRequires:  jpackage-utils >= 1.5
 BuildRequires:  junit
 BuildRequires:  jvyamlb >= 0.2.2
 BuildRequires:  objectweb-asm
+BuildRequires:  ruby
 
 Requires:       bcel
 Requires:       bsf
