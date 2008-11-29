@@ -1,12 +1,12 @@
 Name:           jruby
-Version:        1.1.3
-Release:        2%{?dist}
+Version:        1.1.5
+Release:        1%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
 URL:            http://jruby.codehaus.org/
-Source0:        http://dist.codehaus.org/jruby/jruby-src-1.1.3.tar.gz
+Source0:        http://dist.codehaus.org/jruby/jruby-src-%{version}.tar.gz
 # This patch is Fedora specific; we set up classpath using build-classpath.
 Patch1:         jruby-fix-jruby-start-script.patch
 # Temporary until upstream realizes they don't support 1.4 and scraps
@@ -152,6 +152,12 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Nov 28 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.5-1
+- Bump to 1.1.5.
+
+* Mon Sep 8 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.4-1
+- Bump to 1.1.4.
+
 * Tue Jul 29 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.3-2
 - Update jruby-fix-jruby-start-script.patch to work with faster
   class-loading mechanism introduced in JRuby 1.1.2.
