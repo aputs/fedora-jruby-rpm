@@ -23,6 +23,7 @@ BuildRequires:  ant-junit >= 1.6
 BuildRequires:  bsf
 BuildRequires:  bytelist
 BuildRequires:  java-devel >= 1:1.6
+BuildRequires:  jcodings
 BuildRequires:  jline
 BuildRequires:  jna
 BuildRequires:  jna-posix
@@ -79,11 +80,32 @@ rm -f build_lib/*.jar
 rm -f lib/bsf.jar
 rm -f lib/profile.{jar,properties}
 
+# Clean up the native libs
+rm -f lib/native/*/*
+pushd lib/native
+  for subdir in *; do
+    if [ "$subdir" = "${subdir/linux/}" ]; then
+      rmdir "$subdir"
+    else
+      arch=${subdir/*-/}
+      pushd "$subdir"
+        if [ "x$arch" = "xi386" ]; then
+          ln -s /usr/lib/jna/libjnidispatch.so
+#%ifarch x86_64 # this breaks noarch-ness
+        elif [ "x$arch" = "xamd64" ]; then
+          ln -s /usr/lib64/jna/libjnidispatch.so
+#%endif
+        fi
+      popd
+    fi
+  done
+popd
+
 # and replace them with symlinks
-build-jar-repository -s -p build_lib objectweb-asm/asm \
+build-jar-repository -s -p build_lib constantine objectweb-asm/asm \
   objectweb-asm/asm-analysis objectweb-asm/asm-commons \
   objectweb-asm/asm-tree objectweb-asm/asm-util jline jna \
-  joda-time joni junit bsf jna-posix jvyamlb bytelist
+  joda-time joni junit bsf jna-posix jvyamlb bytelist jcodings
 
 # remove hidden .document files
 find lib/ruby/ -name '*.document' -exec rm -f '{}' \;
@@ -97,9 +119,13 @@ rm -f lib/ruby/gems/1.8/gems/rspec-*/spec/spec/runner/{empty_file.txt,resources/
 # archdir on jruby
 mkdir lib/ruby/site_ruby/1.8/java
 
+# We don't have source to support accessing the jar this accesses
+rm src/org/jruby/runtime/invokedynamic/InvokeDynamicSupport.java
+rm src/org/jruby/compiler/impl/InvokeDynamicInvocationCompiler.java
+
 
 %build
-ant jar
+LD_LIBRARY_PATH="%{_libdir}/jna" ant jar
 ant create-apidocs
 
 
