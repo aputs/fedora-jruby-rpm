@@ -1,8 +1,7 @@
 Name:           jruby
-Version:        1.1.5
+Version:        1.1.6
 Release:        1%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
-
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
 URL:            http://jruby.codehaus.org/
@@ -16,7 +15,7 @@ Patch2:         jruby-remove-retroweaver-task.patch
 # into jruby's jar; we don't.
 Patch3:         jruby-dont-include-dependencies-in-jar.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:      noarch
+#BuildArch:      noarch
 
 BuildRequires:  ant >= 1.6
 BuildRequires:  ant-junit >= 1.6
@@ -80,32 +79,14 @@ rm -f build_lib/*.jar
 rm -f lib/bsf.jar
 rm -f lib/profile.{jar,properties}
 
-# Clean up the native libs
-rm -f lib/native/*/*
-pushd lib/native
-  for subdir in *; do
-    if [ "$subdir" = "${subdir/linux/}" ]; then
-      rmdir "$subdir"
-    else
-      arch=${subdir/*-/}
-      pushd "$subdir"
-        if [ "x$arch" = "xi386" ]; then
-          ln -s /usr/lib/jna/libjnidispatch.so
-#%ifarch x86_64 # this breaks noarch-ness
-        elif [ "x$arch" = "xamd64" ]; then
-          ln -s /usr/lib64/jna/libjnidispatch.so
-#%endif
-        fi
-      popd
-    fi
-  done
-popd
-
 # and replace them with symlinks
 build-jar-repository -s -p build_lib constantine objectweb-asm/asm \
   objectweb-asm/asm-analysis objectweb-asm/asm-commons \
   objectweb-asm/asm-tree objectweb-asm/asm-util jline jna \
   joda-time joni junit bsf jna-posix jvyamlb bytelist jcodings
+
+# Clean up the native libs
+rm -rf lib/native/
 
 # remove hidden .document files
 find lib/ruby/ -name '*.document' -exec rm -f '{}' \;
@@ -179,6 +160,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Dec 18 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.6-1
+- Bump to 1.1.6.
+
 * Fri Nov 28 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.5-1
 - Bump to 1.1.5.
 
