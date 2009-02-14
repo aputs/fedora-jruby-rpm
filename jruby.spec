@@ -5,7 +5,7 @@ Summary:        Pure Java implementation of the Ruby interpreter
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
 URL:            http://jruby.codehaus.org/
-Source0:        http://dist.codehaus.org/jruby/jruby-src-%{version}.tar.gz
+Source0:        http://dist.codehaus.org/jruby/%{version}/jruby-src-%{version}.tar.gz
 # This patch is Fedora specific; we set up classpath using build-classpath.
 Patch1:         jruby-fix-jruby-start-script.patch
 # Temporary until upstream realizes they don't support 1.4 and scraps
