@@ -23,7 +23,7 @@ BuildRequires:  bsf
 BuildRequires:  bytelist
 BuildRequires:  constantine
 BuildRequires:  java-devel >= 1:1.6
-BuildRequires:  jcodings
+BuildRequires:  jcodings >= 1.0.1
 BuildRequires:  jline
 BuildRequires:  jna
 BuildRequires:  jna-posix
@@ -40,7 +40,7 @@ Requires:       bsf
 Requires:       bytelist
 Requires:       constantine
 Requires:       java >= 1:1.6
-Requires:       jcodings
+Requires:       jcodings >= 1.0.1
 Requires:       jline
 Requires:       jna
 Requires:       jna-posix
