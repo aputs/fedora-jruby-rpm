@@ -21,6 +21,7 @@ BuildRequires:  ant >= 1.6
 BuildRequires:  ant-junit >= 1.6
 BuildRequires:  bsf
 BuildRequires:  bytelist
+BuildRequires:  constantine
 BuildRequires:  java-devel >= 1:1.6
 BuildRequires:  jcodings
 BuildRequires:  jline
@@ -37,7 +38,9 @@ BuildRequires:  ruby
 Requires:       bcel
 Requires:       bsf
 Requires:       bytelist
+Requires:       constantine
 Requires:       java >= 1:1.6
+Requires:       jcodings
 Requires:       jline
 Requires:       jna
 Requires:       jna-posix
