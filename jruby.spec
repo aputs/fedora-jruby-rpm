@@ -28,7 +28,7 @@ BuildRequires:  jline
 BuildRequires:  jna
 BuildRequires:  jna-posix
 BuildRequires:  joda-time
-BuildRequires:  joni >= 1.0.3
+BuildRequires:  joni >= 1.1.2
 BuildRequires:  jpackage-utils >= 1.5
 BuildRequires:  junit
 BuildRequires:  jvyamlb >= 0.2.2
@@ -44,7 +44,7 @@ Requires:       jcodings >= 1.0.1
 Requires:       jline
 Requires:       jna
 Requires:       jna-posix
-Requires:       joni >= 1.0.3
+Requires:       joni >= 1.1.2
 Requires:       jpackage-utils >= 1.5
 Requires:       jvyamlb
 Requires:       objectweb-asm
