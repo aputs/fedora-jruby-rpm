@@ -1,8 +1,6 @@
---- build.xml.orig	2008-11-28 18:49:13.000000000 -0800
-+++ build.xml	2008-11-28 18:49:24.000000000 -0800
-@@ -213,25 +213,10 @@
-         <arg value="${jruby.classes.dir}/org/jruby/jruby.properties"/>
-       </exec>
+--- build.xml.orig	2009-02-15 00:46:12.000000000 -0800
++++ build.xml	2009-02-15 00:46:55.000000000 -0800
+@@ -214,21 +214,6 @@
              
        <jar destfile="${lib.dir}/jruby.jar" compress="false">
          <fileset dir="${jruby.classes.dir}"/>
@@ -11,9 +9,9 @@
 -        <zipfileset src="${build.lib.dir}/asm-util-3.0.jar"/>
 -        <zipfileset src="${build.lib.dir}/asm-analysis-3.0.jar"/>
 -        <zipfileset src="${build.lib.dir}/asm-tree-3.0.jar"/>
--        <zipfileset src="${build.lib.dir}/bytelist-0.1.jar"/>
+-        <zipfileset src="${build.lib.dir}/bytelist-1.0.1.jar"/>
 -        <zipfileset src="${build.lib.dir}/constantine.jar"/>
--        <zipfileset src="${build.lib.dir}/jvyamlb-0.2.4.jar"/>
+-        <zipfileset src="${build.lib.dir}/jvyamlb-0.2.5.jar"/>
 -        <zipfileset src="${build.lib.dir}/jline-0.9.93.jar"/>
 -        <zipfileset src="${build.lib.dir}/jcodings.jar"/>
 -        <zipfileset src="${build.lib.dir}/joni.jar"/>
@@ -24,5 +22,3 @@
          <manifest>
            <attribute name="Built-By" value="${user.name}"/>
            <attribute name="Main-Class" value="org.jruby.Main"/>
-         </manifest>
-       </jar>
