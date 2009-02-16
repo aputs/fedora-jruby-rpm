@@ -8,7 +8,7 @@
  
 +j=$(build-classpath objectweb-asm/asm objectweb-asm/asm-util \
 +  objectweb-asm/asm-analysis objectweb-asm/asm-tree joni joda-time jline \
-+  bytelist jna-posix jvyamlb jcodings constantine)
++  bytelist jna jna-posix jvyamlb jcodings constantine)
 +
 +JRUBY_CP="$JRUBY_CP$CP_DELIMETER$j"
 +
