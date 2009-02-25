@@ -1,6 +1,6 @@
 Name:           jruby
 Version:        1.1.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
@@ -163,6 +163,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Thu Dec 18 2008 Conrad Meyer <konrad@tylerc.org> - 1.1.6-1
 - Bump to 1.1.6.
 
