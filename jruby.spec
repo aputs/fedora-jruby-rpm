@@ -1,6 +1,8 @@
+%define debug_package %{nil}
+
 Name:           jruby
 Version:        1.1.6
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
@@ -163,6 +165,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Mar 6 2009 Conrad Meyer <konrad@tylerc.org> - 1.1.6-3
+- debug_package nil, as this is a pure-java package (that can't
+  be built with gcj).
+
 * Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.6-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
