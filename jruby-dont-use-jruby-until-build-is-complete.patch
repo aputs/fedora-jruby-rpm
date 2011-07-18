@@ -1,0 +1,18 @@
+--- build.xml.orig	2011-06-02 09:41:54.176447001 -0400
++++ build.xml	2011-06-02 09:42:13.749447001 -0400
+@@ -353,7 +353,6 @@
+       </jar>
+ 
+       <antcall target="add-emma-jars"/>
+-      <antcall target="generate-ri-cache"/>
+ 
+       <property name="jar-jruby.hasrun" value="true"/>
+   </target>
+@@ -419,7 +418,6 @@
+         <param name="bar.wrap" value="${lib.dir}/jruby.bar" />
+       </antcall>
+       
+-      <antcall target="generate-ri-cache"/>
+   </target>
+   <target name="jarjar" depends="jar-jruby-dist"/>
+ 

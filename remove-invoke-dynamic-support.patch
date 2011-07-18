@@ -1,0 +1,17 @@
+--- src/org/jruby/compiler/impl/SkinnyMethodAdapter.java.orig	2010-02-01 20:05:03.000000000 -0500
++++ src/org/jruby/compiler/impl/SkinnyMethodAdapter.java	2010-02-01 20:05:25.000000000 -0500
+@@ -155,14 +155,10 @@
+     
+     public void invokeinterface(String arg1, String arg2, String arg3) {
+         getMethodVisitor().visitMethodInsn(INVOKEINTERFACE, arg1, arg2, arg3);
+     }
+ 
+-    public void invokedynamic(String arg1, String arg2, String arg3) {
+-        getMethodVisitor().visitMethodInsn(INVOKEDYNAMIC, arg1, arg2, arg3);
+-    }
+-    
+     public void aprintln() {
+         dup();
+         getstatic(p(System.class), "out", ci(PrintStream.class));
+         swap();
+         invokevirtual(p(PrintStream.class), "println", sig(void.class, params(Object.class)));
