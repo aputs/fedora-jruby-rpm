@@ -1,14 +1,14 @@
---- build.xml.orig	2011-05-25 23:03:44.000000000 -0400
-+++ build.xml	2011-05-25 23:05:08.000000000 -0400
-@@ -343,42 +343,6 @@
+--- build.xml.orig	2011-08-02 06:36:42.000000000 -0400
++++ build.xml	2011-08-02 06:37:31.000000000 -0400
+@@ -331,42 +331,6 @@
    <target name="jar-jruby" depends="init, compile, unzip-native-libs" unless="jar-up-to-date, jar-jruby.hasrun">
        <jar destfile="${lib.dir}/jruby.jar" compress="true" index="true" update="true">
          <fileset dir="${jruby.classes.dir}"/>
 -        <zipfileset src="${asm.jar}"/>
--        <zipfileset src="${asm-commons.jar}"/>
--        <zipfileset src="${asm-util.jar}"/>
--        <zipfileset src="${asm-analysis.jar}"/>
--        <zipfileset src="${asm-tree.jar}"/>
+-        <zipfileset src="${asm.commons.jar}"/>
+-        <zipfileset src="${asm.util.jar}"/>
+-        <zipfileset src="${asm.analysis.jar}"/>
+-        <zipfileset src="${asm.tree.jar}"/>
 -        <zipfileset src="${build.lib.dir}/bytelist.jar"/>
 -        <zipfileset src="${build.lib.dir}/constantine.jar"/>
 -        <zipfileset src="${build.lib.dir}/jline-${jline.version}.jar"/>
@@ -40,28 +40,28 @@
 -        <zipfileset src="${build.lib.dir}/yecht.jar"/>
 -        <zipfileset src="${build.lib.dir}/yydebug.jar"/>
 -        <zipfileset src="${build.lib.dir}/nailgun-0.7.1.jar"/>
-         <metainf dir="${base.dir}/spi">
+         <metainf dir="spi">
            <include name="services/**"/>
          </metainf>
-@@ -417,9 +381,6 @@
+@@ -405,9 +369,6 @@
        <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask" classpath="${build.lib.dir}/jarjar-1.0.jar"/>
        <jarjar destfile="${lib.dir}/jruby-core.jar" compress="true" index="true">
          <fileset dir="${jruby.classes.dir}"/>
 -        <zipfileset src="${asm.jar}"/>
--        <zipfileset src="${asm-util.jar}"/>
+-        <zipfileset src="${asm.util.jar}"/>
 -        <zipfileset src="${build.lib.dir}/yecht.jar"/>
-         <metainf dir="${base.dir}/spi">
+         <metainf dir="spi">
            <include name="services/**"/>
          </metainf>
-@@ -443,42 +404,6 @@
+@@ -431,42 +392,6 @@
        <echo message="jarjaring for dist"/>
        <jarjar destfile="${lib.dir}/jruby.jar" compress="true">
          <fileset dir="${jruby.classes.dir}"/>
 -        <zipfileset src="${asm.jar}"/>
--        <zipfileset src="${asm-commons.jar}"/>
--        <zipfileset src="${asm-util.jar}"/>
--        <zipfileset src="${asm-analysis.jar}"/>
--        <zipfileset src="${asm-tree.jar}"/>
+-        <zipfileset src="${asm.commons.jar}"/>
+-        <zipfileset src="${asm.util.jar}"/>
+-        <zipfileset src="${asm.analysis.jar}"/>
+-        <zipfileset src="${asm.tree.jar}"/>
 -        <zipfileset src="${build.lib.dir}/constantine.jar"/>
 -        <zipfileset src="${build.lib.dir}/bytelist.jar"/>
 -        <zipfileset src="${build.lib.dir}/jline-${jline.version}.jar"/>
@@ -93,18 +93,18 @@
 -        <zipfileset src="${build.lib.dir}/yecht.jar"/>
 -        <zipfileset src="${build.lib.dir}/yydebug.jar"/>
 -        <zipfileset src="${build.lib.dir}/nailgun-0.7.1.jar"/>
-         <metainf dir="${base.dir}/spi">
+         <metainf dir="spi">
            <include name="services/**"/>
          </metainf>
-@@ -601,42 +526,6 @@
+@@ -589,42 +514,6 @@
        <fileset dir="${build.dir}/jar-complete">
          <exclude name="META-INF/jruby.home/lib/ruby/site_ruby/shared/builtin/**"/>
        </fileset>
 -      <zipfileset src="${asm.jar}"/>
--      <zipfileset src="${asm-commons.jar}"/>
--      <zipfileset src="${asm-util.jar}"/>
--      <zipfileset src="${asm-analysis.jar}"/>
--      <zipfileset src="${asm-tree.jar}"/>
+-      <zipfileset src="${asm.commons.jar}"/>
+-      <zipfileset src="${asm.util.jar}"/>
+-      <zipfileset src="${asm.analysis.jar}"/>
+-      <zipfileset src="${asm.tree.jar}"/>
 -      <zipfileset src="${build.lib.dir}/bytelist.jar"/>
 -      <zipfileset src="${build.lib.dir}/constantine.jar"/>
 -      <zipfileset src="${build.lib.dir}/jline-${jline.version}.jar"/>
@@ -136,6 +136,6 @@
 -      <zipfileset src="${build.lib.dir}/yecht.jar"/>
 -      <zipfileset src="${build.lib.dir}/yydebug.jar"/>
 -      <zipfileset src="${build.lib.dir}/nailgun-0.7.1.jar"/>
-       <metainf dir="${base.dir}/spi">
+       <metainf dir="spi">
          <include name="services/**"/>
        </metainf>

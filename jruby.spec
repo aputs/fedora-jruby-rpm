@@ -3,8 +3,8 @@
 %global yecht_cluster olabini
 
 Name:           jruby
-Version:        1.6.2
-Release:        2%{?dist}
+Version:        1.6.3
+Release:        1%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
@@ -15,7 +15,6 @@ Source1:        http://github.com/%{yecht_cluster}/yecht/tarball/0.0.2/%{yecht_c
 Patch1:         add-classpath-to-jruby-start-script.patch
 Patch2:         dont-include-jar-dependencies-in-build-xml.patch
 Patch3:         remove-invoke-dynamic-support.patch
-Patch4:         set-jruby-revision.patch
 Patch5:         jruby-dont-use-jruby-until-build-is-complete.patch
 
 # this patch contains the following upstream change
@@ -34,8 +33,8 @@ BuildRequires:  jline
 BuildRequires:  jcodings >= 1.0.5
 BuildRequires:  joni >= 1.1.2
 BuildRequires:  jna
-BuildRequires:  jaffl >= 0.5.9
-BuildRequires:  jffi >= 1.0.9
+BuildRequires:  jaffl >= 0.5.10
+BuildRequires:  jffi >= 1.0.10
 BuildRequires:  joda-time
 BuildRequires:  yydebug
 BuildRequires:  nailgun
@@ -50,6 +49,7 @@ BuildRequires:  ant-junit
 BuildRequires:  junit4
 BuildRequires:  felix-osgi-core >= 1.4.0
 BuildRequires:  snakeyaml
+BuildRequires:  jnr-posix >= 1.1.8
 
 # these normally get installed as gems during the test process
 BuildRequires:  rubygem(rake)
@@ -65,8 +65,8 @@ Requires:  jline
 Requires:  jcodings >= 1.0.1
 Requires:  joni >= 1.1.2
 Requires:  jna
-Requires:  jaffl >= 0.5.9
-Requires:  jffi >= 1.0.9
+Requires:  jaffl >= 0.5.10
+Requires:  jffi >= 1.0.10
 Requires:  joda-time
 Requires:  yydebug
 Requires:  nailgun
@@ -75,12 +75,7 @@ Requires:  jgrapht
 Requires:  bsf
 Requires:  jnr-netdb
 Requires:  jruby-yecht
-
-# the jna-posix package has been renamed to
-# jnr-posix but the jruby dependency does not
-# yet reflect this
-BuildRequires:  jnr-posix >= 1.1.7
-Requires:  jnr-posix >= 1.1.7
+Requires:  jnr-posix >= 1.1.8
 
 
 %description
@@ -114,7 +109,6 @@ The bindings for the yecht library for internal use in jruby
 %patch1 -p0
 %patch2 -p0
 %patch3 -p0
-%patch4 -p0
 %patch5 -p0
 %patch6 -p0
 
@@ -197,7 +191,9 @@ install -p -d -m 755 %{buildroot}%{_javadocdir}/%{name}
 cp -a docs/api/* %{buildroot}%{_javadocdir}/%{name}
 
 # jruby-yecht
+install -d -m 755 %{buildroot}%{_javadir}
 cp yecht/lib/yecht-ruby-0.0.2.jar %{buildroot}%{_datadir}/%{name}-yecht.jar
+ln -s %{_datadir}/%{name}-yecht.jar %{buildroot}%{_javadir}/%{name}-yecht.jar
 
 # pom
 %add_to_maven_depmap org.jruby %{name} %{version} JPP %{name}
@@ -232,8 +228,13 @@ ln -s %{_datadir}/%{name}/lib/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
 %files yecht
 %defattr(-,root,root,-)
 %{_datadir}/%{name}-yecht.jar
+%{_javadir}/%{name}-yecht.jar
 
 %changelog
+* Tue Aug 02 2011 Mo Morsi <mmorsi@redhat.com> - 1.6.3-1
+- update to latest upstream release
+- include missing symlink to jruby-yecht
+
 * Wed Jul 06 2011 Mo Morsi <mmorsi@redhat.com> - 1.6.2-2
 - install jruby to _datadir not _javadir
 - remove windows specific files (exes, dlls, etc)
