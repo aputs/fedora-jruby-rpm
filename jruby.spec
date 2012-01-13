@@ -4,7 +4,7 @@
 
 Name:           jruby
 Version:        1.6.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
@@ -231,6 +231,9 @@ ln -s %{_datadir}/%{name}/lib/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
 %{_javadir}/%{name}-yecht.jar
 
 %changelog
+* Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.6.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Tue Aug 02 2011 Mo Morsi <mmorsi@redhat.com> - 1.6.3-1
 - update to latest upstream release
 - include missing symlink to jruby-yecht
