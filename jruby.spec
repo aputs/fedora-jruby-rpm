@@ -4,7 +4,7 @@
 
 Name:           jruby
 Version:        1.6.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
@@ -33,7 +33,7 @@ BuildRequires:  jline
 BuildRequires:  jcodings >= 1.0.5
 BuildRequires:  joni >= 1.1.2
 BuildRequires:  jna
-BuildRequires:  jaffl >= 0.5.10
+BuildRequires:  jnr-ffi >= 0.5.10
 BuildRequires:  jffi >= 1.0.10
 BuildRequires:  joda-time
 BuildRequires:  yydebug
@@ -53,7 +53,9 @@ BuildRequires:  jnr-posix >= 1.1.8
 
 # these normally get installed as gems during the test process
 BuildRequires:  rubygem(rake)
-BuildRequires:  rubygem(rspec)
+BuildRequires:  rubygem(rspec-core)
+BuildRequires:  rubygem(rspec-mocks)
+BuildRequires:  rubygem(rspec-expectations)
 BuildRequires:  rubygem(ruby-debug)
 BuildRequires:  rubygem(ruby-debug-base)
 BuildRequires:  rubygem(columnize)
@@ -65,7 +67,7 @@ Requires:  jline
 Requires:  jcodings >= 1.0.1
 Requires:  joni >= 1.1.2
 Requires:  jna
-Requires:  jaffl >= 0.5.10
+Requires:  jnr-ffi >= 0.5.10
 Requires:  jffi >= 1.0.10
 Requires:  joda-time
 Requires:  yydebug
@@ -231,6 +233,10 @@ ln -s %{_datadir}/%{name}/lib/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
 %{_javadir}/%{name}-yecht.jar
 
 %changelog
+* Fri Jan 13 2012 Mo Morsi <mmorsi@redhat.com> - 1.6.3-3
+- rename jaffl dependency to jnr-ffi (BZ#723191)
+- change build dep on rspec 1.x to 2.x
+
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.6.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
