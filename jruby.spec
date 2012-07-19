@@ -4,7 +4,7 @@
 
 Name:           jruby
 Version:        1.6.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Pure Java implementation of the Ruby interpreter
 Group:          Development/Languages
 License:        (CPL or GPLv2+ or LGPLv2+) and ASL 1.1 and MIT and Ruby
@@ -233,6 +233,9 @@ ln -s %{_datadir}/%{name}/lib/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
 %{_javadir}/%{name}-yecht.jar
 
 %changelog
+* Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.6.3-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Fri Jan 13 2012 Mo Morsi <mmorsi@redhat.com> - 1.6.3-3
 - rename jaffl dependency to jnr-ffi (BZ#723191)
 - change build dep on rspec 1.x to 2.x
