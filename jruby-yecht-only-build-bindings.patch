@@ -7,7 +7,7 @@ diff -supr build.xml.orig build.xml
    <path id="ruby.build.classpath">
      <fileset dir="${lib.dir}" includes="yecht*.jar"/>
      <fileset dir="${jruby.lib}" includes="jruby.jar"/>
-+    <fileset dir="${build_lib}" includes="bytelist.jar,constantine.jar,jcodings.jar,yecht.jar"/>
++    <fileset dir="${build_lib}" includes="bytelist.jar,jnr-constants.jar,jcodings.jar,yecht.jar"/>
    </path>
  
    <patternset id="java.src.pattern">
