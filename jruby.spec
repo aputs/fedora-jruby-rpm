@@ -332,6 +332,9 @@ cp -a pom.xml $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{name}.pom
 install -d -m 755 %{buildroot}%{_javadir}
 ln -s %{_datadir}/%{name}/lib/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
 
+# Remove copied bouncycastle jars
+rm %{_datadir}/%{name}/lib/ruby/shared/bc*.jar
+
 %check
 %if 0%{?enable_check}
 cp yecht/lib/yecht-ruby-0.0.2.jar build_lib/%{name}-yecht.jar
@@ -390,6 +393,7 @@ ant test
 %changelog
 * Mon Jul 08 2013 Orion Poplawski <orion@cora.nwra.com> - 1.7.2-2
 - Fix pom install
+- Remove shipped bouncycastle jars
 
 * Tue Feb 26 2013 Bohuslav Kabrda <bkabrda@redhat.com> - 1.7.2-1
 - Update to JRuby 1.7.2.
