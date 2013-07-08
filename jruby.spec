@@ -7,7 +7,7 @@
 %global yecht_cluster olabini
 
 #%%global preminorver dev
-%global release 1
+%global release 2
 %global enable_check 1
 
 %global jar_deps \\\
@@ -324,9 +324,9 @@ cp yecht/lib/yecht-ruby-0.0.2.jar %{buildroot}%{_datadir}/%{name}-yecht.jar
 ln -s %{_datadir}/%{name}-yecht.jar %{buildroot}%{_javadir}/%{name}-yecht.jar
 
 # pom
-%add_to_maven_depmap org.jruby %{name} %{version} JPP %{name}
 mkdir -p $RPM_BUILD_ROOT%{_mavenpomdir}
-cp -a pom.xml $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-java.pom
+cp -a pom.xml $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{name}.pom
+%add_maven_depmap JPP-%{name}.pom %{name}.jar
 
 # java dir
 install -d -m 755 %{buildroot}%{_javadir}
@@ -352,7 +352,7 @@ export LANG=en_US.utf8
 ant test
 %endif
 
-%files
+%files -f .mfiles
 %doc COPYING LICENSE.RUBY
 %doc docs/CodeConventions.txt docs/README.test
 
@@ -374,9 +374,6 @@ ant test
 %exclude %{rubygems_dir}/rubygems/defaults/jruby_native.rb
 %{_javadir}/%{name}.jar
 
-%{_mavendepmapfragdir}/%{name}
-%{_mavenpomdir}/*
-
 %files javadoc
 %doc COPYING LICENSE.RUBY
 %doc samples
@@ -391,6 +388,9 @@ ant test
 %config(noreplace) %{_sysconfdir}/rpm/macros.jruby
 
 %changelog
+* Mon Jul 08 2013 Orion Poplawski <orion@cora.nwra.com> - 1.7.2-2
+- Fix pom install
+
 * Tue Feb 26 2013 Bohuslav Kabrda <bkabrda@redhat.com> - 1.7.2-1
 - Update to JRuby 1.7.2.
 
