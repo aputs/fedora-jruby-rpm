@@ -333,7 +333,7 @@ install -d -m 755 %{buildroot}%{_javadir}
 ln -s %{_datadir}/%{name}/lib/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
 
 # Remove copied bouncycastle jars
-rm %{_datadir}/%{name}/lib/ruby/shared/bc*.jar
+rm %{buildroot}%{_datadir}/%{name}/lib/ruby/shared/bc*.jar
 
 %check
 %if 0%{?enable_check}
