@@ -7,7 +7,7 @@
 %global yecht_cluster olabini
 
 #%%global preminorver dev
-%global release 2
+%global release 3
 %global enable_check 1
 
 %global jar_deps \\\
@@ -323,14 +323,16 @@ install -d -m 755 %{buildroot}%{_javadir}
 cp yecht/lib/yecht-ruby-0.0.2.jar %{buildroot}%{_datadir}/%{name}-yecht.jar
 ln -s %{_datadir}/%{name}-yecht.jar %{buildroot}%{_javadir}/%{name}-yecht.jar
 
-# pom
-mkdir -p $RPM_BUILD_ROOT%{_mavenpomdir}
-cp -a pom.xml $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{name}.pom
-%add_maven_depmap JPP-%{name}.pom %{name}.jar
-
 # java dir
 install -d -m 755 %{buildroot}%{_javadir}
 ln -s %{_datadir}/%{name}/lib/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
+
+# poms
+mkdir -p $RPM_BUILD_ROOT%{_mavenpomdir}
+cp -a pom.xml $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{name}-shared.pom
+%add_maven_depmap JPP-%{name}-shared.pom
+cp -a maven/jruby/pom.xml $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{name}.pom
+%add_maven_depmap JPP-%{name}.pom %{name}.jar
 
 # Remove copied bouncycastle jars
 rm %{buildroot}%{_datadir}/%{name}/lib/ruby/shared/bc*.jar
@@ -391,6 +393,9 @@ ant test
 %config(noreplace) %{_sysconfdir}/rpm/macros.jruby
 
 %changelog
+* Thu Jul 11 2013 Orion Poplawski <orion@cora.nwra.com> - 1.7.2-3
+- Install the correct poms correctly
+
 * Mon Jul 08 2013 Orion Poplawski <orion@cora.nwra.com> - 1.7.2-2
 - Fix pom install
 - Remove shipped bouncycastle jars
