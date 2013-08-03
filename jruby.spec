@@ -7,7 +7,7 @@
 %global yecht_cluster olabini
 
 #%%global preminorver dev
-%global release 3
+%global release 4
 %global enable_check 1
 
 %global jar_deps \\\
@@ -393,6 +393,9 @@ ant test
 %config(noreplace) %{_sysconfdir}/rpm/macros.jruby
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.7.2-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Thu Jul 11 2013 Orion Poplawski <orion@cora.nwra.com> - 1.7.2-3
 - Install the correct poms correctly
 
