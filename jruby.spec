@@ -7,7 +7,7 @@
 %global yecht_cluster olabini
 
 #%%global preminorver dev
-%global release 4
+%global release 5
 %global enable_check 1
 
 %global jar_deps \\\
@@ -82,6 +82,9 @@ Patch4:         jruby-remove-builtin-yecht-jar.patch
 Patch5:         jruby-yecht-only-build-bindings.patch
 # We don't want any directories defined by JRuby, everything is taken from Fedora's rubygems
 Patch6:         jruby-remove-rubygems-dirs-definition.patch
+# Fix Ant compatibility.
+# https://github.com/jruby/jruby/issues/601
+Patch7:         jruby-1.7.4-DSL-should-support-parameter-hash-with-symbol-keys.patch
 
 ### Patches for tests
 # UDP multicast test hangs
@@ -220,6 +223,7 @@ Macros for building JRuby-specific libraries.
 %patch2 -p0
 %patch3 -p0
 %patch4 -p0
+%patch7 -p1
 
 %patch100 -p0
 %patch101 -p0
@@ -321,11 +325,11 @@ cp -a docs/api/* %{buildroot}%{_javadocdir}/%{name}
 # jruby-yecht
 install -d -m 755 %{buildroot}%{_javadir}
 cp yecht/lib/yecht-ruby-0.0.2.jar %{buildroot}%{_datadir}/%{name}-yecht.jar
-ln -s %{_datadir}/%{name}-yecht.jar %{buildroot}%{_javadir}/%{name}-yecht.jar
+ln -s ../../..%{_datadir}/%{name}-yecht.jar %{buildroot}%{_javadir}/%{name}-yecht.jar
 
 # java dir
 install -d -m 755 %{buildroot}%{_javadir}
-ln -s %{_datadir}/%{name}/lib/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
+ln -s ../../..%{_datadir}/%{name}/lib/%{name}.jar %{buildroot}%{_javadir}/%{name}.jar
 
 # poms
 mkdir -p $RPM_BUILD_ROOT%{_mavenpomdir}
@@ -393,6 +397,10 @@ ant test
 %config(noreplace) %{_sysconfdir}/rpm/macros.jruby
 
 %changelog
+* Thu Aug 22 2013 Vít Ondruch <vondruch@redhat.com> - 1.7.2-5
+- Use relative symlinks for compatibility with recent Java packaging macros.
+- Fix Ant compatibility.
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.7.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
