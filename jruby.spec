@@ -7,7 +7,7 @@
 %global yecht_cluster olabini
 
 #%%global preminorver dev
-%global release 5
+%global release 6
 %global enable_check 1
 
 %global jar_deps \\\
@@ -49,7 +49,7 @@
 
 Name:           jruby
 Version:        1.7.2
-Release:        %{?preminorver:0.}%{release}%{?preminorver:.%{preminorver}}%{?dist}
+Release:        %{?preminorver:0.}%{release}%{?preminorver:.%{preminorver}}%{?dist}.1
 Summary:        Pure Java implementation of the Ruby interpreter
 Group:          Development/Languages
 # (CPL or GPLv2+ or LGPLv2+) - JRuby itself
@@ -397,6 +397,9 @@ ant test
 %config(noreplace) %{_sysconfdir}/rpm/macros.jruby
 
 %changelog
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.7.2-6.1
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Thu Aug 22 2013 Vít Ondruch <vondruch@redhat.com> - 1.7.2-5
 - Use relative symlinks for compatibility with recent Java packaging macros.
 - Fix Ant compatibility.
