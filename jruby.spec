@@ -3,7 +3,7 @@
 %global rubygems_dir %{_datadir}/rubygems
 
 #%%global preminorver dev
-#%%global commit 575b395a61800a2becb4a88deb75570457821b95
+#%%global commit 4e93f318f3301cf99ed483522bf6a5d75253918b
 %global release 0
 %global enable_check 0
 
@@ -42,7 +42,7 @@
      yydebug
 
 Name:           jruby
-Version:        1.7.16
+Version:        1.7.16.1
 Release:        %{?preminorver:0.}%{release}%{?preminorver:.%{preminorver}}%{?dist}.1
 Summary:        Pure Java implementation of the Ruby interpreter
 Group:          Development/Languages
@@ -164,7 +164,6 @@ Macros for building JRuby-specific libraries.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preminorver:.%{preminorver}}
-#%setup -q -n %{name}-%{version}%{?preminorver:.%{preminorver}}
 
 %patch0 -p1
 %patch7 -p1
